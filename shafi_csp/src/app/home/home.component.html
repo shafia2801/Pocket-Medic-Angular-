@@ -1,0 +1,66 @@
+<!-- your-component.component.html -->
+<div class="crud">
+  <div class="card">
+  <button (click)="navigateToRegistration()">Go to Registration</button>
+  <button (click)="fetchRegistrations()">Get Registrations</button>
+</div>
+</div>
+
+<!-- Display registrations if data is fetched -->
+<div *ngIf="dataFetched && registrations.length > 0">
+  <div class="table-container">  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let registration of registrations">
+        <td>{{ registration.username }}</td>
+        <td>{{ registration.email }}</td>
+        <td>{{ registration.password }}</td>
+        <td> <div class="btn">
+          <button (click)="deleteRegistration(registration.email)">Delete</button>
+          <button (click)="editRegistration(registration)">Update</button> </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div *ngIf="dataFetched && registrations.length === 0">
+  <p>No registrations found.</p>
+</div>
+
+<!-- Form for updating a registration -->
+<div *ngIf="selectedRegistration" class="update-registration-container">
+  <h4>Update</h4>
+  <form [formGroup]="updateForm" (ngSubmit)="updateRegistration()">
+    <div class="form-group">
+
+      <input id="username" placeholder="username" formControlName="username"[attr.disabled]=true/>
+    </div>
+    <div  class="form-group">
+      
+      <input id="email" placeholder="email" formControlName="email" />
+    </div>
+    <div class="form-group">
+     
+      <input id="password" placeholder="password" formControlName="password" type="password" />
+    </div>
+    <button type="submit" [disabled]="updateForm.invalid">Save</button>
+  </form>
+</div>
+</div>
+<div class="home-container">
+  <p *ngIf="username">Logged in as: {{ username }}</p>
+  <p *ngIf="!username">You are not logged in.</p>
+</div>
+
+
+

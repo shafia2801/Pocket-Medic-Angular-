@@ -1,0 +1,297 @@
+/* component.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+ position: absolute;
+ top: 100px;
+ margin-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  font-family: "Montserrat";
+}
+
+.container {
+  width: 350px;
+  height: 300px;
+  border-radius: 20px;
+  position: relative;
+  transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInScale 1s ease;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.side {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: #fff;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 20px;
+}
+
+.content {
+  transform: translateZ(70px) scale(0.8);
+  line-height: 1.5em;
+}
+
+.content h1 {
+  position: relative;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content p {
+  margin-top: 20px;
+  line-height: 1.5em;
+  font-size: 0.9em;
+  color: #bbb;
+  transition: color 0.3s ease;
+  animation: fadeInUp 2s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content h1:before {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  height: 3px;
+  background-color: #3e3;
+  width: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.front {
+  z-index: 2;
+  background-size: cover;
+  background-image: url(https://userscontent2.emaze.com/images/f9538183-0ff9-478f-b964-c8ab90421e3b/3d28e192fda5c17250f96a2779c84475.jpg);
+}
+
+.back {
+  background-color: #333;
+  transform: rotateY(180deg);
+  z-index: 0;
+  padding-top: 10px;
+  background-image: url(https://userscontent2.emaze.com/images/f9538183-0ff9-478f-b964-c8ab90421e3b/3d28e192fda5c17250f96a2779c84475.jpg);
+}
+
+.container:hover {
+  transform: rotateY(180deg) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.container:hover .content h1,
+.container:hover .content p {
+  color: #f1c40f;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.social-media a {
+  position: relative;
+  margin: 10px 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-media img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-media a:hover img {
+  transform: rotate(360deg);
+  filter: brightness(1.2);
+}
+
+.social-icon {
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+
+.social-name {
+  display: none;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.social-media a:hover .social-name {
+  display: block;
+  opacity: 1;
+  transform: translateY(-10px); /* Slide-up effect */
+  animation: fadeInUp 0.5s ease; /* Apply the fade-in and slide-up effect */
+}
+
+.white-mode {
+  text-decoration: none;
+  padding: 7px 10px;
+  background-color: #122;
+  border-radius: 3px;
+  color: #fff;
+  transition: 0.35s ease-in-out;
+  position: fixed;
+  left: 15px;
+  bottom: 15px;
+  font-family: "Montserrat";
+}
+
+.white-mode:hover {
+  background-color: #fff;
+  color: #122;
+}
+a.circle {
+  margin-bottom: 400px;
+  margin-left: 360px;
+  width: 28vmin;
+  height: 28vmin;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: center center; /* Rotate around the center */
+  animation: rotateCircle 5s linear infinite; /* Circle rotation */
+  background: radial-gradient(circle, violet, indigo, blue, green, yellow, orange, red);
+}
+
+a.circle:before,
+a.circle:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+a.circle:before {
+  animation: f 4s both;
+  background: center / cover url(https://cdn.pixabay.com/photo/2024/07/20/16/44/pocket-medic-8908598_1280.png);
+}
+
+a.circle:after {
+  animation: g 4s both;
+  filter: brightness(0.5);
+  z-index: 1; /* Ensure inner content is on top */
+}
+
+.circle-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 10px solid transparent; /* Adjust border thickness as needed */
+  background: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+  background-clip: border-box;
+  animation: rotateBorder 5s linear infinite;
+  z-index: 0; /* Border is behind the circle content */
+}
+
+@keyframes f {
+  from {
+    clip-path: inset(0 80% 0 0);
+  }
+  50%,
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes g {
+  from {
+    clip-path: inset(0 0 0 20%);
+    transform-origin: 20% 0;
+  }
+  50%,
+  to {
+    clip-path: inset(0 0 0 100%);
+    transform-origin: 100% 0;
+  }
+}
+
+@keyframes rotateCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
